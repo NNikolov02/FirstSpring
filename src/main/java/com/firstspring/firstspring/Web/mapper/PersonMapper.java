@@ -1,6 +1,6 @@
-package com.firstspring.firstspring.mapper;
+package com.firstspring.firstspring.Web.mapper;
 
-import com.firstspring.firstspring.model.Person;
+import com.firstspring.firstspring.Web.model.Person;
 import com.firstspring.firstspring.Web.dto.PersonCreateRequest;
 import com.firstspring.firstspring.Web.dto.PersonResponse;
 import org.mapstruct.Mapper;

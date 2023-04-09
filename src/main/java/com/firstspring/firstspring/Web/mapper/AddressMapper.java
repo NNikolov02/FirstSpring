@@ -1,6 +1,6 @@
-package com.firstspring.firstspring.mapper;
+package com.firstspring.firstspring.Web.mapper;
 
-import com.firstspring.firstspring.model.Address;
+import com.firstspring.firstspring.Web.model.Address;
 import com.firstspring.firstspring.Web.dto.AddressDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;

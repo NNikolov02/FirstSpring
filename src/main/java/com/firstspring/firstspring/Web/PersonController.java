@@ -1,6 +1,7 @@
 package com.firstspring.firstspring.Web;
 
-import java.io.InvalidObjectException;
+
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -11,12 +12,13 @@ import com.firstspring.firstspring.Web.dto.PersonCreateRequest;
 import com.firstspring.firstspring.Web.dto.PersonPhotosGetResponse;
 import com.firstspring.firstspring.Web.dto.PersonResponse;
 import com.firstspring.firstspring.Web.dto.SetPersonPhotosRequest;
-import com.firstspring.firstspring.model.Person;
-import com.firstspring.firstspring.model.Photo;
-import com.firstspring.firstspring.repository.PersonRepository;
-import com.firstspring.firstspring.repository.PhotoRepository;
-import com.firstspring.firstspring.error.NotFoundObjectException;
-import com.firstspring.firstspring.mapper.PersonMapper;
+import com.firstspring.firstspring.Web.error.InvalidObjectException;
+import com.firstspring.firstspring.Web.model.Person;
+import com.firstspring.firstspring.Web.model.Photo;
+import com.firstspring.firstspring.Web.repository.PersonRepository;
+import com.firstspring.firstspring.Web.repository.PhotoRepository;
+import com.firstspring.firstspring.Web.error.NotFoundObjectException;
+import com.firstspring.firstspring.Web.mapper.PersonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.firstspring.firstspring.validation.ObjectValidator;
+import com.firstspring.firstspring.Web.validation.ObjectValidator;
 
 
 
@@ -44,7 +46,7 @@ public class PersonController {
 
     @Autowired
     private ObjectValidator validator;
-    @Autowired
+    @org.springframework.beans.factory.annotation.Autowired(required=true)
     private PersonMapper personMapper;
 
     @GetMapping("")

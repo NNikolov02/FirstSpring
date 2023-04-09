@@ -1,7 +1,6 @@
-package com.firstspring.firstspring.repository;
+package com.firstspring.firstspring.Web.repository;
 
-import com.firstspring.firstspring.model.Person;
-import com.firstspring.firstspring.model.Photo;
+import com.firstspring.firstspring.Web.model.Photo;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

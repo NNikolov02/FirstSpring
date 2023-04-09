@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.Range;
 
 import lombok.Builder;
 import lombok.Data;
-import com.firstspring.firstspring.validation.ValidEgn;
+import com.firstspring.firstspring.Web.validation.ValidEgn;
 
 @Data
 @Builder

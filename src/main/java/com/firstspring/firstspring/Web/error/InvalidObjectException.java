@@ -1,4 +1,4 @@
-package com.firstspring.firstspring.error;
+package com.firstspring.firstspring.Web.error;
 
 import java.util.Map;
 

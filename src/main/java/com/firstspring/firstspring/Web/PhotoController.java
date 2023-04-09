@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import com.firstspring.firstspring.model.Photo;
-import com.firstspring.firstspring.repository.PhotoRepository;
+import com.firstspring.firstspring.Web.model.Photo;
+import com.firstspring.firstspring.Web.repository.PhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
