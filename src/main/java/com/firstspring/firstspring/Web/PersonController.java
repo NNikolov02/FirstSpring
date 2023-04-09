@@ -1,4 +1,4 @@
-package com.firstspring.firstspring;
+package com.firstspring.firstspring.Web;
 
 import java.io.InvalidObjectException;
 import java.util.HashSet;
@@ -7,15 +7,16 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import com.firstspring.firstspring.model.Address;
 import com.firstspring.firstspring.model.Person;
 import com.firstspring.firstspring.model.Photo;
 import com.firstspring.firstspring.repository.PersonRepository;
 import com.firstspring.firstspring.repository.PhotoRepository;
-import dto.PersonCreateRequest;
-import dto.SetPersonPhotosRequest;
-import dto.PersonPhotosGetResponse;
+import dto.*;
 import error.NotFoundObjectException;
+import mapper.PersonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import validation.ObjectValidator;
+
 
 
 @RestController
@@ -41,6 +43,8 @@ public class PersonController {
 
     @Autowired
     private ObjectValidator validator;
+    @Autowired
+    private PersonMapper personMapper;
 
     @GetMapping("")
     public List<Person> getAllPersons() {
@@ -60,19 +64,20 @@ public class PersonController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Person> createPerson(@RequestBody PersonCreateRequest personDto) {
+    public ResponseEntity<PersonResponse> createPerson(@RequestBody PersonCreateRequest personDto) {
 
         Map<String, String> validationErrors = validator.validate(personDto);
         if (validationErrors.size() != 0) {
             throw new InvalidObjectException("Invalid Person Create", validationErrors);
         }
 
-        Person mappedPerson = Person.builder().name(personDto.getName()).age(personDto.getAge())
-                .address(personDto.getAddress()).egnNumber(personDto.getEgnNumber()).build();
 
+        Person mappedPerson = personMapper.modelFromCreateRequest(personDto);
         Person savedPerson = repo.save(mappedPerson);
+        PersonResponse responsePerson = personMapper.responseFromModel(savedPerson);
 
-        return ResponseEntity.status(201).body(savedPerson);
+        return ResponseEntity.status(201).body(responsePerson);
+
     }
 
     @GetMapping("/{personId}/photos")

@@ -17,6 +17,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Setter;
+import validation.ValidEgn;
 
 @Entity
 @Data
@@ -42,5 +43,6 @@ public class Person {
 
     private Set<Photo> photos;
 
+    @ValidEgn
     private String egnNumber;
 }

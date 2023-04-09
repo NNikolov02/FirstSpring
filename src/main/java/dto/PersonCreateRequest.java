@@ -15,7 +15,7 @@ public class PersonCreateRequest {
     @Range(min = 0, max = 200, message = "i like ages from 0 to 200")
     private int age;
 
-    private Address address;
+    private AddressDto address;
 
     @ValidEgn(message = "Persons EGN should have exactly 10 chars")
     private String egnNumber;
