@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import lombok.Data;
 
 @RestControllerAdvice
-public class ExeptionHandlerAdvice {
+public class ExceptionHandlerAdvice {
 
     @ExceptionHandler(InvalidObjectException.class)
     public ResponseEntity<GenericExeptionBody> handleInvalidObjectException(

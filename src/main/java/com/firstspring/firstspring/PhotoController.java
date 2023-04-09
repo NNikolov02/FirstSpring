@@ -24,7 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RestController
 @RequestMapping("/photos")
-public class Controller {
+public class PhotoController {
 
     @Autowired
     private PhotoRepository repo;

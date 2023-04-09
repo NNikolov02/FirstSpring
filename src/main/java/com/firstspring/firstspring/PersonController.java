@@ -31,7 +31,7 @@ import validation.ObjectValidator;
 
 @RestController
 @RequestMapping("/persons")
-public class SimpleController {
+public class PersonController {
 
     @Autowired
     private PersonRepository repo;
