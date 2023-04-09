@@ -1,4 +1,4 @@
-package error;
+package com.firstspring.firstspring.error;
 
 import java.util.UUID;
 

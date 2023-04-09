@@ -1,8 +1,7 @@
-package mapper;
+package com.firstspring.firstspring.mapper;
 
-import ch.qos.logback.core.model.ComponentModel;
 import com.firstspring.firstspring.model.Address;
-import dto.AddressDto;
+import com.firstspring.firstspring.Web.dto.AddressDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 

@@ -1,11 +1,10 @@
-package dto;
+package com.firstspring.firstspring.Web.dto;
 
-import com.firstspring.firstspring.model.Address;
 import org.hibernate.validator.constraints.Range;
 
 import lombok.Builder;
 import lombok.Data;
-import validation.ValidEgn;
+import com.firstspring.firstspring.validation.ValidEgn;
 
 @Data
 @Builder

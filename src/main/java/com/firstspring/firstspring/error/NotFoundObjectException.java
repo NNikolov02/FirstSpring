@@ -1,4 +1,4 @@
-package error;
+package com.firstspring.firstspring.error;
 
 public class NotFoundObjectException extends PersonsApiBaseException {
     private final String ObjectClaz;

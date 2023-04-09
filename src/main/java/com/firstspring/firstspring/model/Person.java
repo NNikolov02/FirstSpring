@@ -17,7 +17,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Setter;
-import validation.ValidEgn;
+import com.firstspring.firstspring.validation.ValidEgn;
 
 @Entity
 @Data

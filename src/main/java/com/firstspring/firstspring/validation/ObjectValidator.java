@@ -1,4 +1,4 @@
-package validation;
+package com.firstspring.firstspring.validation;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;

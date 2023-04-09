@@ -1,11 +1,10 @@
-package mapper;
+package com.firstspring.firstspring.mapper;
 
 import com.firstspring.firstspring.model.Person;
-import dto.PersonCreateRequest;
-import dto.PersonResponse;
+import com.firstspring.firstspring.Web.dto.PersonCreateRequest;
+import com.firstspring.firstspring.Web.dto.PersonResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
 
 
 @Mapper(uses = AddressMapper.class)

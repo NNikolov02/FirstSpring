@@ -3,7 +3,7 @@ import java.io.InvalidObjectException;
 import java.util.Map;
 import java.util.UUID;
 
-import error.NotFoundObjectException;
+import com.firstspring.firstspring.error.NotFoundObjectException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

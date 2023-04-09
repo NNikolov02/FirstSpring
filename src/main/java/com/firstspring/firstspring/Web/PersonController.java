@@ -7,16 +7,17 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-import com.firstspring.firstspring.model.Address;
+import com.firstspring.firstspring.Web.dto.PersonCreateRequest;
+import com.firstspring.firstspring.Web.dto.PersonPhotosGetResponse;
+import com.firstspring.firstspring.Web.dto.PersonResponse;
+import com.firstspring.firstspring.Web.dto.SetPersonPhotosRequest;
 import com.firstspring.firstspring.model.Person;
 import com.firstspring.firstspring.model.Photo;
 import com.firstspring.firstspring.repository.PersonRepository;
 import com.firstspring.firstspring.repository.PhotoRepository;
-import dto.*;
-import error.NotFoundObjectException;
-import mapper.PersonMapper;
+import com.firstspring.firstspring.error.NotFoundObjectException;
+import com.firstspring.firstspring.mapper.PersonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import validation.ObjectValidator;
+import com.firstspring.firstspring.validation.ObjectValidator;
 
 
 
