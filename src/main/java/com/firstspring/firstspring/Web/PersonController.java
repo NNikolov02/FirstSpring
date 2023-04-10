@@ -8,30 +8,24 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-import com.firstspring.firstspring.Web.dto.PersonCreateRequest;
-import com.firstspring.firstspring.Web.dto.PersonPhotosGetResponse;
-import com.firstspring.firstspring.Web.dto.PersonResponse;
-import com.firstspring.firstspring.Web.dto.SetPersonPhotosRequest;
+import com.firstspring.firstspring.Web.dto.*;
 import com.firstspring.firstspring.Web.error.InvalidObjectException;
 import com.firstspring.firstspring.Web.model.Person;
 import com.firstspring.firstspring.Web.model.Photo;
+import com.firstspring.firstspring.Web.repository.PersonPagingRepository;
 import com.firstspring.firstspring.Web.repository.PersonRepository;
 import com.firstspring.firstspring.Web.repository.PhotoRepository;
 import com.firstspring.firstspring.Web.error.NotFoundObjectException;
 import com.firstspring.firstspring.Web.mapper.PersonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.firstspring.firstspring.Web.validation.ObjectValidator;
-
+import org.springframework.web.service.annotation.PatchExchange;
 
 
 @RestController
@@ -40,6 +34,8 @@ public class PersonController {
 
     @Autowired
     private PersonRepository repo;
+    @Autowired
+    private PersonPagingRepository pagingRepo;
 
     @Autowired
     private PhotoRepository photoRepo;
@@ -48,17 +44,21 @@ public class PersonController {
     private ObjectValidator validator;
     @org.springframework.beans.factory.annotation.Autowired(required=true)
     private PersonMapper personMapper;
+    private final Integer Page_Size = 10;
 
     @GetMapping("")
-    public List<Person> getAllPersons() {
-        return (List<Person>) repo.findAll();
+    public Page<PersonResponse> getAllPersons(@RequestParam Integer currPage) {
+
+        return  pagingRepo.findAll(PageRequest.of(currPage,Page_Size)).map(personMapper::responseFromModel);
+
     }
 
     @GetMapping("/{personId}")
-    public Person getPersonById(@PathVariable String personId) {
-        return repo.findById(UUID.fromString(personId)).orElseThrow(() -> {
+    public ResponseEntity <PersonResponse> getPersonById(@PathVariable String personId) {
+        Person person = repo.findById(UUID.fromString(personId)).orElseThrow(() -> {
             throw new NotFoundObjectException("Person Not Found", Person.class.getName(), personId);
         });
+        return ResponseEntity.ok(personMapper.responseFromModel(person));
     }
 
     @DeleteMapping("/{personId}")
@@ -80,6 +80,25 @@ public class PersonController {
         PersonResponse responsePerson = personMapper.responseFromModel(savedPerson);
 
         return ResponseEntity.status(201).body(responsePerson);
+
+    }
+    @PatchMapping("/{personId}")
+    public ResponseEntity<PersonResponse> updatePerson(@PathVariable String personId, @RequestBody PersonUpdateRequest personDto){
+        Map<String, String> validationErrors = validator.validate(personDto);
+        if (validationErrors.size() != 0) {
+            throw new InvalidObjectException("Invalid Person Create", validationErrors);
+        }
+        Person currentPerson = repo.findById(UUID.fromString(personId)).orElseThrow(() -> {
+            throw new NotFoundObjectException("Person Not Found", Person.class.getName(), personId);
+
+    });
+        personMapper.updateModelFromDto(personDto,currentPerson);
+
+        Person updatePerson = repo.save(currentPerson);
+        PersonResponse personResponse = personMapper.responseFromModel(updatePerson);
+
+        return ResponseEntity.status(200).body(personResponse);
+
 
     }
 
