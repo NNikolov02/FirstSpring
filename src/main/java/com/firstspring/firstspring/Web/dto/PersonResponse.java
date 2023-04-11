@@ -10,7 +10,7 @@ import java.util.UUID;
 public class PersonResponse {
     private UUID id;
     private String name;
-    private int age;
+    private Integer age;
     private AddressDto address;
     private String egnNumber;
 
