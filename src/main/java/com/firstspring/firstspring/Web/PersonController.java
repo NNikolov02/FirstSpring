@@ -2,8 +2,6 @@ package com.firstspring.firstspring.Web;
 
 
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -17,7 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.firstspring.firstspring.Web.validation.ObjectValidator;
-import service.PersonService;
+import com.firstspring.firstspring.service.PersonService;
 
 
 @RestController
@@ -30,7 +28,7 @@ public class PersonController {
 
     @Autowired
     private ObjectValidator validator;
-    @org.springframework.beans.factory.annotation.Autowired(required=true)
+    @Autowired
     private PersonMapper personMapper;
     @Autowired
     private PersonService personService;
