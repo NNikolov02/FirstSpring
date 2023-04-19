@@ -1,4 +1,4 @@
-package com.firstspring.firstspring.integration;
+package com.firstspring.firstspring;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,36 +1,36 @@
 package com.firstspring.firstspring.Web;
 
 
+import com.firstspring.firstspring.Web.dto.*;
+import com.firstspring.firstspring.Web.error.InvalidObjectException;
+import com.firstspring.firstspring.Web.mapper.PersonMapper;
+import com.firstspring.firstspring.Web.model.Person;
+import com.firstspring.firstspring.Web.service.PersonService;
+import com.firstspring.firstspring.Web.validation.ObjectValidator;
+import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-import com.firstspring.firstspring.Web.dto.*;
-import com.firstspring.firstspring.Web.error.InvalidObjectException;
-import com.firstspring.firstspring.Web.model.Person;
-import com.firstspring.firstspring.Web.mapper.PersonMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import com.firstspring.firstspring.Web.validation.ObjectValidator;
-import com.firstspring.firstspring.service.PersonService;
-
 
 @RestController
 @RequestMapping("/persons")
+@AllArgsConstructor
 public class PersonController {
 
 
 
 
 
-    @Autowired
+
     private ObjectValidator validator;
-    @Autowired
+
     private PersonMapper personMapper;
-    @Autowired
+
     private PersonService personService;
     private final Integer Page_Size = 10;
 
